@@ -1,0 +1,57 @@
+# SQL_test
+USE [master]
+GO
+
+-- Crear la base de datos
+CREATE DATABASE [finanzas_personales]
+
+
+-- Crear tablas
+CREATE TABLE [dbo].[categoria](
+    [id_categoria] [int] IDENTITY(1,1) NOT NULL,
+    [nombre_categoria] [varchar](30) NULL,
+    PRIMARY KEY CLUSTERED ([id_categoria] ASC)
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[movimiento](
+    [id_movimiento] [varchar](10) NOT NULL,
+    [nombre_movimiento] [varchar](25) NULL,
+    PRIMARY KEY CLUSTERED ([id_movimiento] ASC)
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[razon](
+    [id_razon] [varchar](10) NOT NULL,
+    [nombre_razon] [varchar](25) NULL,
+    PRIMARY KEY CLUSTERED ([id_razon] ASC)
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[recurso_financiero](
+    [id_recurso] [varchar](10) NOT NULL,
+    [nombre_recurso] [varchar](25) NULL,
+    PRIMARY KEY CLUSTERED ([id_recurso] ASC)
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[registros](
+    [id_registro] [int] IDENTITY(1,1) NOT NULL,
+    [fecha] [date] NOT NULL,
+    [id_movimiento] [varchar](10) NOT NULL,
+    [id_razon] [varchar](10) NOT NULL,
+    [id_recurso] [varchar](10) NOT NULL,
+    [id_categoria] [int] NOT NULL,
+    [monto] [decimal](10, 2) NULL,
+    [detalle] [varchar](255) NULL,
+    PRIMARY KEY CLUSTERED ([id_registro] ASC)
+) ON [PRIMARY]
+
+-- (Añadir las restricciones de clave foránea)
+
+-- Configurar opciones adicionales (puedes omitir estas si no son necesarias)
+-- (Otras configuraciones...)
+
+-- Cambiar al contexto original de la base de datos
+USE [master]
+GO
+
+-- Configuración final de la base de datos
+ALTER DATABASE [finanzas_personales] SET READ_WRITE 
+GO
